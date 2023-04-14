@@ -1,6 +1,7 @@
 let express = require('express');
 let app = express();
-console.log("Hello World")
+require('dotenv').config()
+// console.log("Hello World")
 
 //Start a Working Express Server
 // app.get("/", function(req, res) {
@@ -16,11 +17,12 @@ console.log("Hello World")
 //Serve Static Assets
 // app.use("/public",express.static(__dirname +"/public"));
 
-//Serve JSON on a Specific Route
+//Serve JSON on a Specific Route //Use the .env File
 app.get("/json", function(req, res) {
-         var data = {"message": "Hello json"};
-         res.json(data)
+         process.env.MESSAGE_STYLE;
+         res.json(process.env.MESSAGE_STYLE ? {"message": "HELLO JSON"} : {"message": "Hello json"})
      })
+
 
 
 
