@@ -19,8 +19,15 @@ require('dotenv').config()
 
 //Serve JSON on a Specific Route //Use the .env File
 app.get("/json", function(req, res) {
-         process.env.MESSAGE_STYLE;
-         res.json(process.env.MESSAGE_STYLE ? {"message": "HELLO JSON"} : {"message": "Hello json"})
+    
+    let messageStyle=process.env.MESSAGE_STYLE;
+    console.log(messageStyle)
+         if(messageStyle.includes("uppercase")){
+            message={"message": "HELLO JSON"};
+         }else{
+            message={"message": "Hello json"};
+         }
+         res.json(message);
      })
 
 
