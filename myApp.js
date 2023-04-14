@@ -37,11 +37,20 @@ process.env.MESSAGE_STYLE="uppercase";
 // );
 
 //Implement a Root-Level Request Logger Middleware
-app.use(function(req, res, next){
-    console.log(req.method+" "+req.path+" - "+req.ip);
-    next();
+// app.use(function(req, res, next){
+//     console.log(req.method+" "+req.path+" - "+req.ip);
+//     next();
 
-})
+// })
+
+
+//Chain Middleware to Create a Time Server//As side effect
+app.get('/now', function(req, res, next) {
+    req.time = new Date().toString();  // Hypothetical synchronous operation
+    next();
+  }, function(req, res) {
+    res.json({time: req.time})
+  });
 
 
 
