@@ -8,13 +8,13 @@ console.log("Hello World")
 // })
 
 //Serve an HTML File
-app.get("/", function(req, res) {
-    var absolutePath = __dirname + '/views/index.html'
-    res.sendFile(absolutePath)
-})
+// app.get("/", function(req, res) {
+//     var absolutePath = __dirname + '/views/index.html'
+//     res.sendFile(absolutePath)
+// })
 
 //Serve Static Assets
-app.use("/public",express.static(__dirname +"/public"));
+// app.use("/public",express.static(__dirname +"/public"));
 
 //Serve JSON on a Specific Route
 app.get("/json", function(req, res) {
