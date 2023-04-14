@@ -31,11 +31,17 @@ process.env.MESSAGE_STYLE="uppercase";
 //          res.json(message);
 //      })
 
-const message = "Hello json";
-app.get("/json", 
-    (req, res) => res.json({"message": process.env.MESSAGE_STYLE === "uppercase" ? message.toUpperCase() : message})
-);
+// const message = "Hello json";
+// app.get("/json", 
+//     (req, res) => res.json({"message": process.env.MESSAGE_STYLE === "uppercase" ? message.toUpperCase() : message})
+// );
 
+//Implement a Root-Level Request Logger Middleware
+app.use(function(req, res, next){
+    console.log(req.method+" "+req.path+" - "+req.ip);
+    next();
+
+})
 
 
 
