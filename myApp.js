@@ -1,6 +1,7 @@
 let express = require('express');
 let app = express();
 require('dotenv').config()
+process.env.MESSAGE_STYLE="uppercase";
 // console.log("Hello World")
 
 //Start a Working Express Server
@@ -18,18 +19,22 @@ require('dotenv').config()
 // app.use("/public",express.static(__dirname +"/public"));
 
 //Serve JSON on a Specific Route //Use the .env File
-app.get("/json", function(req, res) {
+// app.get("/json", function(req, res) {
     
-    let messageStyle=process.env.MESSAGE_STYLE;
-    console.log(messageStyle)
-         if(messageStyle.includes("uppercase")){
-            message={"message": "HELLO JSON"};
-         }else{
-            message={"message": "Hello json"};
-         }
-         res.json(message);
-     })
+//     let messageStyle=process.env.MESSAGE_STYLE;
+//     console.log(messageStyle)
+//          if(messageStyle.includes("uppercase")){
+//             message={"message": "HELLO JSON"};
+//          }else{
+//             message={"message": "Hello json"};
+//          }
+//          res.json(message);
+//      })
 
+const message = "Hello json";
+app.get("/json", 
+    (req, res) => res.json({"message": process.env.MESSAGE_STYLE === "uppercase" ? message.toUpperCase() : message})
+);
 
 
 
