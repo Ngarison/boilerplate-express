@@ -45,12 +45,27 @@ process.env.MESSAGE_STYLE="uppercase";
 
 
 //Chain Middleware to Create a Time Server//As side effect
-app.get('/now', function(req, res, next) {
-    req.time = new Date().toString();  // Hypothetical synchronous operation
-    next();
-  }, function(req, res) {
-    res.json({time: req.time})
-  });
+// app.get('/now', function(req, res, next) {
+//     req.time = new Date().toString();  // Hypothetical synchronous operation
+//     next();
+//   }, function(req, res) {
+//     res.json({time: req.time})
+//   });
+
+
+//Get Route Parameter Input from the Client
+// app.get("/:word/echo", function(req, res){
+//     var word=req.params.word;
+//     res.json({echo:word});
+// })
+
+//Get Query Parameter Input from the Client
+app.route('/name').get(function(req, res){
+    let first=req.query.first;
+    let last=req.query.last;
+    res.send({name:first+' '+last});
+}).post();
+
 
 
 
