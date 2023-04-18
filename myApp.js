@@ -59,12 +59,29 @@ process.env.MESSAGE_STYLE="uppercase";
 //     res.json({echo:word});
 // })
 
-//Get Query Parameter Input from the Client
-app.route('/name').get(function(req, res){
+//"Get Query Parameter Input from the Client"
+/*app.route('/name').get(function(req, res){
     let first=req.query.first;
     let last=req.query.last;
     res.send({name:first+' '+last});
-}).post();
+}).post();*/
+
+//Use body-parser to Parse POST Requests
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({extended: false}))
+
+//Get Data from POST Requests
+app.route('/name').get(function(req, res){
+    var absolutePath = __dirname + '/views/index.html'
+    res.sendFile(absolutePath)
+
+}).post(function(req, res){
+    let first=req.body.first;
+    let last=req.body.last;
+    res.send({name:first+' '+last});
+});
+
+
 
 
 
